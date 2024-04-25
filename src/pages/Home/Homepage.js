@@ -4,8 +4,7 @@ import CardList from "../../components/card/CardList";
 
 function Homepage() {
   return (
-    <div className="text-2xl">
-      Hey this is home page
+    <div className="container max-w-[1180px] mx-auto">
       {/* <Card /> */}
       <CardList />
     </div>

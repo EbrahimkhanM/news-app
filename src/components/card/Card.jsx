@@ -14,17 +14,17 @@ export default function Card({ news }) {
             </h2>
           </div>
 
-          <div class="grid gap-6 lg:grid-cols-3 xl:gap-x-12">
+          <div class="grid gap-6  lg:grid-cols-3 xl:gap-x-12">
             {news?.map((item) => {
               if (item.urlToImage !== null) {
                 return (
-                  <div class="mb-6 lg:mb-0">
+                  <div class="mb-6 lg:mb-0 shadow-sm hover:shadow-md transition-all duration-150 rounded-md">
                     <div
                       class="relative mb-6 overflow-hidden rounded-lg bg-cover bg-no-repeat shadow-lg dark:shadow-black/20"
                       data-te-ripple-init
                       data-te-ripple-color="light"
                     >
-                      <img src={item.urlToImage} class="w-full" alt="Louvre" />
+                      <img src={item.urlToImage} class="w-full max-h-[250px] min-h-[250px] object-cover" alt="Louvre" />
                       <a href="#!">
                         <div class="absolute top-0 right-0 bottom-0 left-0 h-full w-full overflow-hidden bg-fixed opacity-0 transition duration-300 ease-in-out hover:opacity-100 bg-[hsla(0,0%,98.4%,.15)]"></div>
                       </a>

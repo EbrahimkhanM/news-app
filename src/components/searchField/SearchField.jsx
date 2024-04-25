@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState,useRef, useEffect } from "react";
 
 export default function SearchField() {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("All categories");
-
+  const dropdownRef = useRef(null);
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
@@ -13,13 +13,25 @@ export default function SearchField() {
     toggleDropdown(); // close dropdown after selection if needed
   };
 
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [dropdownRef]);
   console.log("open>>>", isOpen);
   console.log("selected>>>", selectedCategory);
 
   return (
     <>
       <form className="max-w-lg mx-auto">
-        <div className="flex">
+        <div className="flex relative">
           <label
             htmlFor="search-dropdown"
             className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
@@ -52,9 +64,10 @@ export default function SearchField() {
           </button>
           <div
             id="dropdown"
+            ref={dropdownRef}
             className={`z-10 ${
               isOpen ? "block" : "hidden"
-            } bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 absolute mt-1 top-[102px]`}
+            } bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 absolute mt-1 top-[100%] w-full`}
           >
             <ul
               className="py-2 text-sm text-gray-700 dark:text-gray-200"
