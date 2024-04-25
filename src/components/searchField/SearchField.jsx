@@ -1,6 +1,6 @@
-import React, { useState,useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 
-export default function SearchField() {
+export default function SearchField({ onSearch ,setCatgoryQuery,setSourceQuery }) {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("All categories");
   const dropdownRef = useRef(null);
@@ -10,6 +10,12 @@ export default function SearchField() {
 
   const handleCategorySelection = (category) => {
     setSelectedCategory(category);
+    setCatgoryQuery(category)
+    toggleDropdown(); // close dropdown after selection if needed
+  };
+  const handleSourceSelection = (source,soucelink) => {
+    setSelectedCategory(source);
+    setSourceQuery(soucelink)
     toggleDropdown(); // close dropdown after selection if needed
   };
 
@@ -25,12 +31,36 @@ export default function SearchField() {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [dropdownRef]);
+  const [query, setQuery] = useState("");
+
+  const handleChange = (event) => {
+    setQuery(event.target.value);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    onSearch(query);
+  };
+  const categories = [
+    {name: "Science", link: "science"},
+    {name: "Business", link: "business"},
+    {name: "Sports", link: "sports"},
+    {name: "Technology", link: "technology"},
+    {name: "Entertainment", link: "entertainment"},
+  ];
+  const sourcesData = [
+    {name: "BBC News", link: "bbc-news"},
+    {name: "CNN", link: "cnn"},
+    {name: "Al Jazeera", link: "al-jazeera-english"},
+    {name: "The Washington Post", link: "the-washington-post"},
+    {name: "Reuters", link: "reuters"},
+  ];
   console.log("open>>>", isOpen);
   console.log("selected>>>", selectedCategory);
 
   return (
     <>
-      <form className="max-w-lg mx-auto">
+      <form onSubmit={handleSubmit} className="max-w-lg mx-auto">
         <div className="flex relative">
           <label
             htmlFor="search-dropdown"
@@ -89,25 +119,50 @@ export default function SearchField() {
                 <div className="font-medium text-gray-900 dark:text-gray-300 ms-2 text-sm">
                   Category
                 </div>
-                <button
+                {/* <button
                   type="button"
                   className="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                   onClick={() => handleCategorySelection("Science")}
                 >
                   Science
-                </button>
+                </button> */}
+                <ul
+                  className="py-2 flex text-sm text-gray-700 dark:text-gray-200"
+                  aria-labelledby="dropdown-button"
+                >
+                  {categories.map((category, index) => (
+                    <li key={index}>
+                      <button
+                        type="button"
+                        className={`inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white ${selectedCategory === category.name ? "bg-gray-100" : ""}`}
+                        onClick={() => handleCategorySelection(category.name)}
+                      >
+                        {category.name}
+                      </button>
+                    </li>
+                  ))}
+                </ul>
               </li>
               <li>
                 <div className="font-medium text-gray-900 dark:text-gray-300 ms-2 text-sm">
                   Source
                 </div>
-                <button
-                  type="button"
-                  className="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                  onClick={() => handleCategorySelection("Author1")}
+                <ul
+                  className="py-2 flex text-sm text-gray-700 dark:text-gray-200"
+                  aria-labelledby="dropdown-button"
                 >
-                  Author1
-                </button>
+                  {sourcesData.map((source, index) => (
+                    <li key={index}>
+                      <button
+                        type="button"
+                        className={`inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 ${selectedCategory == source.name ? "bg-gray-100": "" } `}
+                        onClick={() => handleSourceSelection(source.name,source.link)}
+                      >
+                        {source.name}
+                      </button>
+                    </li>
+                  ))}
+                </ul>
               </li>
             </ul>
           </div>
@@ -116,13 +171,15 @@ export default function SearchField() {
             <input
               type="search"
               id="search-dropdown"
-              className="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-e-lg border-s-gray-50 border-s-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-s-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500"
+              className="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-e-lg border-s-gray-50 border-s-2 border border-gray-300 dark:text-white "
               placeholder="Search for Articles by keyword ..."
               required
+              value={query}
+              onChange={handleChange}
             />
             <button
               type="submit"
-              className="absolute top-0 end-0 p-2.5 text-sm font-medium h-full text-white bg-blue-700 rounded-e-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              className="absolute top-0 end-0 p-2.5 text-sm font-medium h-full text-white bg-blue-700 rounded-e-lg border  hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >
               <svg
                 className="w-4 h-4"
