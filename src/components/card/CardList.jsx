@@ -6,9 +6,10 @@ export default function CardList() {
 
   useEffect(() => {
     const fetchNews = async () => {
+      let newsAPIKey=process.env.REACT_APP_API_KEY
       try {
         const response = await fetch(
-          "https://newsapi.org/v2/top-headlines?country=us&apiKey=425b94cf19be4a12a442b6a0db7420f5"
+          `https://newsapi.org/v2/top-headlines?country=us&apiKey=${newsAPIKey}`
         );
         const data = await response.json();
         setNews(data.articles);

@@ -6,6 +6,7 @@ export default function Card({ news }) {
   return (
     <>
       <div class="container my-24 mx-auto md:px-6">
+        <SearchField />
         <section class="mb-32 text-center">
           <div>
             <h2 class="mb-12 text-center text-3xl font-bold">
