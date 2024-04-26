@@ -2,7 +2,9 @@ import React, { useEffect, useState } from "react";
 import Card from "./Card";
 import { css } from "@emotion/react";
 import { ClipLoader } from "react-spinners";
-export default function CardList({ searchQuery, categoryQuery ,sourceQuery  }) {
+export default function CardList({ searchQuery, categoryQuery ,sourceQuery,fromDate,toDate  }) {
+  console.log("fromDate==INNNNNNNN==",fromDate)
+  console.log("toDate==INNNNNNNN==",toDate)
   const [news, setNews] = useState();
   const [loading, setLoading] = useState(true);
   useEffect(() => {
@@ -12,9 +14,9 @@ export default function CardList({ searchQuery, categoryQuery ,sourceQuery  }) {
       // let apiUrl = searchQuery
       //   ? `https://newsapi.org/v2/everything?q=${searchQuery}&apiKey=${newsAPIKey}&language=en&searchIn=title`
       //   : `https://newsapi.org/v2/top-headlines?country=us&apiKey=${newsAPIKey}`;
-      if (categoryQuery) {
+      if (fromDate && toDate ) {
         // Fetch news based on category
-        apiUrl = `https://newsapi.org/v2/top-headlines/sources?category=${categoryQuery}&apiKey=${newsAPIKey}`;
+        apiUrl = `https://newsapi.org/v2/everything?q=apple&from=${fromDate}&to=${toDate}&sortBy=popularity&apiKey=${newsAPIKey}`;
       } else if (searchQuery) {
         // Fetch news based on search query
         apiUrl = `https://newsapi.org/v2/everything?q=${searchQuery}&apiKey=${newsAPIKey}&language=en&searchIn=title`;
@@ -42,7 +44,7 @@ export default function CardList({ searchQuery, categoryQuery ,sourceQuery  }) {
     };
 
     fetchNews();
-  }, [searchQuery,categoryQuery,sourceQuery]);
+  }, [searchQuery,categoryQuery,sourceQuery,fromDate]);
   const override = css`
     display: block;
     margin: 0 auto;
