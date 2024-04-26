@@ -9,7 +9,7 @@ export default function MainNewsCard() {
           "url('https://websitedemos.net/business-blog-04/wp-content/uploads/sites/895/2021/06/business-blog-latest-news-image-1.jpg')",
       }}
     >
-      {/* Grey Shade on Image */}
+      
       <div className="absolute inset-0 bg-gradient-to-b from-transparent to-gray-500"></div>
 
       <div className="pr-0 md:pr-[40px] pt-6 pb:0 md:pb-6 z-10">
