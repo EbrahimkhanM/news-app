@@ -2,14 +2,14 @@ import React from "react";
 
 export default function SideNewsCard() {
   return (
-    <div className="w-full flex flex-row gap-4 pb-4 ">
+    <div className="w-full flex flex-row gap-4 pb-4  ">
       <img
         src="https://websitedemos.net/business-blog-04/wp-content/uploads/sites/895/2021/06/business-blog-latest-news-image-2.jpg"
         alt="img"
-        className="h-[154px] w-[296px]"
+        className=" h-[150px] w-[126.5px] md:h-[203px] md:w-[226.5px] lg:h-[131px] lg:w-[296px]"
       />
 
-      <div className=" w-[50%] my-auto">
+      <div className=" w-[50%] md:my-auto my-0">
         <div className="pt-3 pb-[9px] pr-6">
           <div className=" bg-[#45485F]  inline-block min-w-min cursor-pointer">
             <p className=" text-[#FFFFFF] font-sans font-lato text-base leading-normal font-normal px-1 py-1/2  hover:text-black ">
