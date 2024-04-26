@@ -17,7 +17,6 @@ export default function Card({ news }) {
 
           <div class="grid gap-6  lg:grid-cols-3 xl:gap-x-12">
             {news?.map((item) => {
-              console.log("item.urlToImage========>",item.urlToImage)
               if (item.urlToImage !== null) {
                 return (
                   <div class="mb-6 lg:mb-0 shadow-sm hover:shadow-md transition-all duration-150 rounded-md">

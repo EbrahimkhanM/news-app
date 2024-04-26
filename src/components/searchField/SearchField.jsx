@@ -1,21 +1,39 @@
 import React, { useState, useRef, useEffect } from "react";
 
-export default function SearchField({ onSearch ,setCatgoryQuery,setSourceQuery }) {
+export default function SearchField({
+  onSearch,
+  setCatgoryQuery,
+  setSourceQuery,
+  handleDateSelection,
+  setFromDate,
+  setToDate,
+  query,
+  setQuery,
+}) {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("All categories");
+
   const dropdownRef = useRef(null);
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
 
   const handleCategorySelection = (category) => {
+    console.log("category=========", category);
     setSelectedCategory(category);
-    setCatgoryQuery(category)
+    onSearch(category);
+    setQuery("");
+    setFromDate("");
+    setToDate("");
     toggleDropdown(); // close dropdown after selection if needed
   };
-  const handleSourceSelection = (source,soucelink) => {
+  const handleSourceSelection = (source, soucelink) => {
     setSelectedCategory(source);
-    setSourceQuery(soucelink)
+    setSourceQuery(soucelink);
+    onSearch("");
+    setQuery("");
+    setFromDate("");
+    setToDate("");
     toggleDropdown(); // close dropdown after selection if needed
   };
 
@@ -31,7 +49,6 @@ export default function SearchField({ onSearch ,setCatgoryQuery,setSourceQuery }
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [dropdownRef]);
-  const [query, setQuery] = useState("");
 
   const handleChange = (event) => {
     setQuery(event.target.value);
@@ -39,21 +56,24 @@ export default function SearchField({ onSearch ,setCatgoryQuery,setSourceQuery }
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    setSelectedCategory("All categories");
+    setFromDate("");
+    setToDate("");
     onSearch(query);
   };
   const categories = [
-    {name: "Science", link: "science"},
-    {name: "Business", link: "business"},
-    {name: "Sports", link: "sports"},
-    {name: "Technology", link: "technology"},
-    {name: "Entertainment", link: "entertainment"},
+    { name: "Science", link: "science" },
+    { name: "Business", link: "business" },
+    { name: "Sports", link: "sports" },
+    { name: "Technology", link: "technology" },
+    { name: "Entertainment", link: "entertainment" },
   ];
   const sourcesData = [
-    {name: "BBC News", link: "bbc-news"},
-    {name: "CNN", link: "cnn"},
-    {name: "Al Jazeera", link: "al-jazeera-english"},
-    {name: "The Washington Post", link: "the-washington-post"},
-    {name: "Reuters", link: "reuters"},
+    { name: "BBC News", link: "bbc-news" },
+    { name: "CNN", link: "cnn" },
+    { name: "Al Jazeera", link: "al-jazeera-english" },
+    { name: "The Washington Post", link: "the-washington-post" },
+    { name: "Reuters", link: "reuters" },
   ];
   console.log("open>>>", isOpen);
   console.log("selected>>>", selectedCategory);
@@ -106,15 +126,53 @@ export default function SearchField({ onSearch ,setCatgoryQuery,setSourceQuery }
               <div className="font-medium text-gray-900 dark:text-gray-300 ms-2 text-sm">
                 Date
               </div>
-              <li>
-                <button
-                  type="button"
-                  className="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                  onClick={() => handleCategorySelection("24-04-2024")}
-                >
-                  24-04-2024
-                </button>
-              </li>
+              <div className="flex">
+                <li>
+                  <button
+                    type="button"
+                    className={`inline-flex w-full px-4 py-2 hover:bg-gray-100 ${
+                      selectedCategory === "Today" ? "bg-gray-100" : ""
+                    }`}
+                    onClick={() => {
+                      handleDateSelection("Today");
+                      setSelectedCategory("Today");
+                      toggleDropdown();
+                    }}
+                  >
+                    Today
+                  </button>
+                </li>
+                <li>
+                  <button
+                    type="button"
+                    className={`inline-flex w-full px-4 py-2 hover:bg-gray-100 ${
+                      selectedCategory === "This Week" ? "bg-gray-100" : ""
+                    } `}
+                    onClick={() => {
+                      handleDateSelection("This Week");
+                      setSelectedCategory("This Week");
+                      toggleDropdown();
+                    }}
+                  >
+                    This Week
+                  </button>
+                </li>
+                <li>
+                  <button
+                    type="button"
+                    className={`inline-flex w-full px-4 py-2 hover:bg-gray-100 ${
+                      selectedCategory === "This Month" ? "bg-gray-100 " : ""
+                    }`}
+                    onClick={() => {
+                      handleDateSelection("This Month");
+                      setSelectedCategory("This Month");
+                      toggleDropdown();
+                    }}
+                  >
+                    This Month
+                  </button>
+                </li>
+              </div>
               <li>
                 <div className="font-medium text-gray-900 dark:text-gray-300 ms-2 text-sm">
                   Category
@@ -134,7 +192,11 @@ export default function SearchField({ onSearch ,setCatgoryQuery,setSourceQuery }
                     <li key={index}>
                       <button
                         type="button"
-                        className={`inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white ${selectedCategory === category.name ? "bg-gray-100" : ""}`}
+                        className={`inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white ${
+                          selectedCategory === category.name
+                            ? "bg-gray-100"
+                            : ""
+                        }`}
                         onClick={() => handleCategorySelection(category.name)}
                       >
                         {category.name}
@@ -155,8 +217,12 @@ export default function SearchField({ onSearch ,setCatgoryQuery,setSourceQuery }
                     <li key={index}>
                       <button
                         type="button"
-                        className={`inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 ${selectedCategory == source.name ? "bg-gray-100": "" } `}
-                        onClick={() => handleSourceSelection(source.name,source.link)}
+                        className={`inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 ${
+                          selectedCategory == source.name ? "bg-gray-100" : ""
+                        } `}
+                        onClick={() =>
+                          handleSourceSelection(source.name, source.link)
+                        }
                       >
                         {source.name}
                       </button>
