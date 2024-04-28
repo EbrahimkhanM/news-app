@@ -21,7 +21,8 @@ export default function CardList({ searchQuery, categoryQuery ,sourceQuery,fromD
         // apiUrl = `https://newsapi.org/v2/everything?q=${searchQuery}&apiKey=${newsAPIKey}&language=en&searchIn=title`;
         apiUrl = `https://news-nextjs-apis.vercel.app/api/search-news?q=${searchQuery}&apiKey=${newsAPIKey}`;
       } else if(sourceQuery){
-        apiUrl = `https://newsapi.org/v2/top-headlines?sources=${sourceQuery}&apiKey=${newsAPIKey}`;
+        // apiUrl = `https://newsapi.org/v2/top-headlines?sources=${sourceQuery}&apiKey=${newsAPIKey}`;
+        apiUrl = `https://news-nextjs-apis.vercel.app/api/source-news?sources=${sourceQuery}&apiKey=${newsAPIKey}`;
       } else {
         // Fetch general top headlines
         // apiUrl = `https://newsapi.org/v2/top-headlines?country=us&apiKey=${newsAPIKey}`;
