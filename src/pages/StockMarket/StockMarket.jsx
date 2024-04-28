@@ -7,6 +7,7 @@ export default function StockMarket() {
       <Card />
       <Card />
       <Card />
+      
     </div>
   );
 }

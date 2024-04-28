@@ -1,6 +1,7 @@
 import React from "react";
 import SideNewsCard from "../../components/news/SideNewsCard";
 import MainNewsCard from "../../components/news/MainNewsCard";
+import Card from "../../components/stockMarket/Card";
 
 function News() {
   return (
@@ -13,6 +14,7 @@ function News() {
           <SideNewsCard />
           <SideNewsCard />
           <SideNewsCard />
+          <Card />
         </div>
       </div>
     </div>
