@@ -15,7 +15,7 @@ export default function CardList({ searchQuery, categoryQuery ,sourceQuery,fromD
       if (fromDate && toDate ) {
         // Fetch news based on category
         // apiUrl = `https://newsapi.org/v2/everything?q=apple&from=${fromDate}&to=${toDate}&sortBy=popularity&apiKey=${newsAPIKey}`;
-        apiUrl = `https://news-nextjs-apis.vercel.app/api/search-news?fromDate=${fromDate}&toDate=${toDate}&sortBy=popularity&apiKey=${newsAPIKey}`;
+        apiUrl = `https://news-nextjs-apis.vercel.app/api/time-news?fromDate=${fromDate}&toDate=${toDate}&sortBy=popularity&apiKey=${newsAPIKey}`;
       } else if (searchQuery) {
         // Fetch news based on search query
         // apiUrl = `https://newsapi.org/v2/everything?q=${searchQuery}&apiKey=${newsAPIKey}&language=en&searchIn=title`;
