@@ -24,7 +24,7 @@ export default function Card({ news }) {
                 return (
                   <div
                     key={idx}
-                    class="mb-6  lg:mb-0 shadow-md hover:shadow-lg transition-all duration-150 rounded-md"
+                    class="mb-6 mx-3 md:mx-0  lg:mb-0 shadow-md hover:shadow-lg transition-all duration-150 rounded-md"
                   >
                     <a href={item?.url} target="_blank">
                     <div
