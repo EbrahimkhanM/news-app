@@ -3,8 +3,6 @@ import Card from "./Card";
 import { css } from "@emotion/react";
 import { ClipLoader } from "react-spinners";
 export default function CardList({ searchQuery, categoryQuery ,sourceQuery,fromDate,toDate  }) {
-  console.log("fromDate==INNNNNNNN==",fromDate)
-  console.log("toDate==INNNNNNNN==",toDate)
   const [news, setNews] = useState();
   const [loading, setLoading] = useState(true);
   useEffect(() => {
@@ -30,7 +28,6 @@ export default function CardList({ searchQuery, categoryQuery ,sourceQuery,fromD
         setLoading(true);
         const response = await fetch(apiUrl);
         const data = await response.json();
-        console.log("data resp-----------------------///////////////",data)
         if(data?.articles){
           setNews(data.articles);
         }else if(data?.sources){
@@ -50,7 +47,6 @@ export default function CardList({ searchQuery, categoryQuery ,sourceQuery,fromD
     margin: 0 auto;
     border-color: red;
   `;
-  console.log("news>>>>", news);
   return (
     <>
       {loading ? (

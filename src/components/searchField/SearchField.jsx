@@ -19,7 +19,6 @@ export default function SearchField({
   };
 
   const handleCategorySelection = (category) => {
-    console.log("category=========", category);
     setSelectedCategory(category);
     onSearch(category);
     setQuery("");
@@ -75,8 +74,6 @@ export default function SearchField({
     { name: "The Washington Post", link: "the-washington-post" },
     { name: "Reuters", link: "reuters" },
   ];
-  console.log("open>>>", isOpen);
-  console.log("selected>>>", selectedCategory);
 
   return (
     <>

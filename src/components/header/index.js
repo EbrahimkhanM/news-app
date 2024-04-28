@@ -1,65 +1,68 @@
 import React from "react";
-
+import { Link, useLocation } from "react-router-dom";
 function Header() {
+  const location = useLocation();
   return (
     <div>
       <div>
-        <nav class="bg-[#F7F7F8] border-gray-200 ">
-          <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-            <a
-              href="/"
-              class="flex items-center  space-x-3 rtl:space-x-reverse"
-            >
-              <img
-                src="/images/news-logo.png"
-                class="w-[80px]"
-                alt="News Logo"
-              />
-              
+        <nav className="bg-[#F7F7F8] border-gray-200">
+          <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+            <a href="/" className="flex items-center  space-x-3 rtl:space-x-reverse">
+              <img src="/images/news-logo.png" className="w-[80px]" alt="News Logo" />
             </a>
-            
-            <div class="hidden w-full md:block md:w-auto" id="navbar-default">
-              <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg  md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 ">
+
+            <div className="hidden w-full md:block md:w-auto" id="navbar-default">
+              <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 ">
                 <li>
-                  <a
-                    href="#"
-                    class="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500"
+                  <Link
+                    to="/"
+                    className={`block py-2 px-3 text-white rounded  md:p-0   ${
+                      location.pathname === "/" ? "!text-blue-900 " : " !text-black"
+                    }`}
                     aria-current="page"
                   >
                     Home
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
-                    href="#"
-                    class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                  <Link
+                    to="/business"
+                    className={`block py-2 px-3 text-white rounded  md:p-0   ${
+                      location.pathname === "/business" ? "!text-blue-900 " : " !text-black"
+                    }`}
                   >
                     Business
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
-                    href="#"
-                    class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                  <Link
+                    to="/entertainment"
+                    className={`block py-2 px-3 text-white rounded  md:p-0   ${
+                      location.pathname === "/entertainment" ? "!text-blue-900 " : " !text-black"
+                    }`}
                   >
                     Entertainment
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
-                    href="#"
-                    class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                  <Link
+                    to="/sports"
+                    className={`block py-2 px-3 text-white rounded  md:p-0   ${
+                      location.pathname === "/sports" ? "!text-blue-900 " : " !text-black"
+                    }`}
                   >
                     Sports
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a
-                    href="#"
-                    class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                  <Link
+                    to="/technology"
+                    className={`block py-2 px-3 text-white rounded  md:p-0   ${
+                      location.pathname === "/technology" ? "!text-blue-900 " : "!text-black"
+                    }`}
                   >
                     Technology
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>

@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import SearchField from "../searchField/SearchField";
 
 export default function Card({ news }) {
-  console.log("news>>>", news);
-
   return (
     <>
       <div class="container my-14 mx-auto md:px-6">
@@ -17,7 +15,6 @@ export default function Card({ news }) {
 
           <div class="grid gap-6  lg:grid-cols-3 xl:gap-x-12">
             {news?.map((item, idx) => {
-              console.log("item=======>", item);
               if (item.urlToImage !== null) {
                 return (
                   <div
@@ -30,7 +27,7 @@ export default function Card({ news }) {
                       data-te-ripple-color="light"
                     >
                       <img
-                        src={item.urlToImage || "/images/news-card.png"}
+                        src={item?.urlToImage || "/images/news-card.png"}
                         onError={(e) => {
                           e.target.onerror = null;
                           e.target.src = "/images/news-card.png";

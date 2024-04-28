@@ -1,20 +1,21 @@
 import React from "react";
 
-export default function Card() {
+export default function Card({news,title}) {
   return (
-    <div className="w-[100%] md:w-[388px]  ml-2 pb-[40px] md:pb-[63px] border border-b-[#22242F] flex flex-col">
+    <a href={news?.url} target="_blank">
+      <div className="w-[100%] md:w-[388px] hover:shadow-lg transition-all duration-200   pb-[40px] md:pb-[63px] border border-b-[#22242F] md:border-b-0 shadow-sm flex flex-col">
       <div className="max-h-[258px]  w-[100%] mb-[21px] ">
         <img
-          src="https://websitedemos.net/business-blog-04/wp-content/uploads/sites/895/2021/06/business-blog-stock-market-news-image-1.jpg"
+          src={news?.urlToImage || "/images/news-card.png"}
           alt="img"
-          className="h-[100%] w-[100%] mb-[21px] "
+          className="h-[100%] w-[100%] max-h-[220px] min-h-[220px]  mb-[21px]  object-cover"
         />
       </div>
 
-      <div className=" mb-[30px]   pr-[23px]">
+      <div className=" mb-[30px]   md:p-3 p-2">
         <div className="cursor-pointer pb-[11px]">
           <p className="font-lato text-sm font-[13px] leading-normal tracking-normal text-blue-500  hover:text-black ">
-            Stock Market
+            {title}
           </p>
         </div>
         <div className="">
@@ -33,5 +34,6 @@ export default function Card() {
         </div>
       </div>
     </div>
+    </a>
   );
 }

@@ -47,7 +47,6 @@ function Homepage() {
       default:
         break;
     }
-    console.log("from:", fromDate, "to:", toDate);
     // Here you can use 'from' and 'to' to perform your search or any other operation
   };
   return (
