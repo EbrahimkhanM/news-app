@@ -2,6 +2,11 @@ import React, { useEffect, useState } from "react";
 import SearchField from "../searchField/SearchField";
 
 export default function Card({ news }) {
+  const formatDate = (dateString) => {
+    const options = { day: 'numeric', month: 'long', year: 'numeric' };
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-US', options);
+  };
   return (
     <>
       <div class="container my-14 mx-auto md:px-6">
@@ -13,14 +18,15 @@ export default function Card({ news }) {
             </h2>
           </div>
 
-          <div class="grid gap-6  lg:grid-cols-3 xl:gap-x-12">
+          <div class="grid gap-6 md:grid-cols-2 grid-cols-1  lg:grid-cols-3 xl:gap-x-12">
             {news?.map((item, idx) => {
               if (item.urlToImage !== null) {
                 return (
                   <div
                     key={idx}
-                    class="mb-6  lg:mb-0 shadow-sm hover:shadow-md transition-all duration-150 rounded-md"
+                    class="mb-6  lg:mb-0 shadow-md hover:shadow-lg transition-all duration-150 rounded-md"
                   >
+                    <a href={item?.url} target="_blank">
                     <div
                       class="relative mb-6 overflow-hidden rounded-t-md bg-cover bg-no-repeat shadow-lg dark:shadow-black/20"
                       data-te-ripple-init
@@ -35,10 +41,10 @@ export default function Card({ news }) {
                         class="w-full max-h-[250px] min-h-[250px] object-cover"
                         alt="News Image"
                       />
-                      <a href="#!">
+                      
                         <div class="absolute top-0 right-0 bottom-0 left-0 h-full w-full overflow-hidden bg-fixed opacity-0 transition duration-300 ease-in-out hover:opacity-100 bg-[hsla(0,0%,98.4%,.15)]"></div>
-                      </a>
                     </div>
+                    </a>
                     <div className="p-2">
                       <h5 class="mb-3 text-left text-[20px] leading-6 font-bold text-[rgb(34_36_47)]">
                         {item?.title &&
@@ -67,11 +73,11 @@ export default function Card({ news }) {
                         <a href="#!"> {item.author}</a>
                       </small>
                     </p> */}
-                      <div className="flex justify-between">
-                        <p className="text-neutral-600 text-sm">
-                          {item.publishedAt.substring(0, 10)}
+                      <div className="flex justify-between mb-2">
+                        <p className="text-neutral-500 text-sm">
+                          {formatDate(item?.publishedAt)}
                         </p>
-                        <p className="text-neutral-600 text-sm">
+                        <p className="text-neutral-500 text-sm">
                           {item.author &&
                             item.author.split(" ").slice(0, 2).join(" ")}
                         </p>

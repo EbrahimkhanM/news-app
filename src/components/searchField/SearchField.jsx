@@ -77,7 +77,7 @@ export default function SearchField({
 
   return (
     <>
-      <form onSubmit={handleSubmit} className="max-w-lg mx-auto">
+      <form onSubmit={handleSubmit} className="max-w-lg mx-auto md:px-0 px-3 ">
         <div className="flex relative">
           <label
             htmlFor="search-dropdown"
@@ -170,17 +170,10 @@ export default function SearchField({
                   </button>
                 </li>
               </div>
-              <li>
+              {/* <li>
                 <div className="font-medium text-gray-900 dark:text-gray-300 ms-2 text-sm">
                   Category
                 </div>
-                {/* <button
-                  type="button"
-                  className="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                  onClick={() => handleCategorySelection("Science")}
-                >
-                  Science
-                </button> */}
                 <ul
                   className="py-2 flex text-sm text-gray-700 dark:text-gray-200"
                   aria-labelledby="dropdown-button"
@@ -201,7 +194,7 @@ export default function SearchField({
                     </li>
                   ))}
                 </ul>
-              </li>
+              </li> */}
               <li>
                 <div className="font-medium text-gray-900 dark:text-gray-300 ms-2 text-sm">
                   Source

@@ -14,15 +14,18 @@ export default function CardList({ searchQuery, categoryQuery ,sourceQuery,fromD
       //   : `https://newsapi.org/v2/top-headlines?country=us&apiKey=${newsAPIKey}`;
       if (fromDate && toDate ) {
         // Fetch news based on category
-        apiUrl = `https://newsapi.org/v2/everything?q=apple&from=${fromDate}&to=${toDate}&sortBy=popularity&apiKey=${newsAPIKey}`;
+        // apiUrl = `https://newsapi.org/v2/everything?q=apple&from=${fromDate}&to=${toDate}&sortBy=popularity&apiKey=${newsAPIKey}`;
+        apiUrl = `https://news-nextjs-apis.vercel.app/api/search-news?fromDate=${fromDate}&toDate=${toDate}&sortBy=popularity&apiKey=${newsAPIKey}`;
       } else if (searchQuery) {
         // Fetch news based on search query
-        apiUrl = `https://newsapi.org/v2/everything?q=${searchQuery}&apiKey=${newsAPIKey}&language=en&searchIn=title`;
+        // apiUrl = `https://newsapi.org/v2/everything?q=${searchQuery}&apiKey=${newsAPIKey}&language=en&searchIn=title`;
+        apiUrl = `https://news-nextjs-apis.vercel.app/api/search-news?q=${searchQuery}&apiKey=${newsAPIKey}`;
       } else if(sourceQuery){
         apiUrl = `https://newsapi.org/v2/top-headlines?sources=${sourceQuery}&apiKey=${newsAPIKey}`;
       } else {
         // Fetch general top headlines
-        apiUrl = `https://newsapi.org/v2/top-headlines?country=us&apiKey=${newsAPIKey}`;
+        // apiUrl = `https://newsapi.org/v2/top-headlines?country=us&apiKey=${newsAPIKey}`;
+        apiUrl = `https://news-nextjs-apis.vercel.app/api/top-news?apiKey=${newsAPIKey}`;
       }
       try {
         setLoading(true);
