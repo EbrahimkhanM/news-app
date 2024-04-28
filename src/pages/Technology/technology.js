@@ -12,9 +12,10 @@ function Technology({ newsData }) {
   useEffect(() => {
     const fetchNews = async () => {
       let newsAPIKey = process.env.REACT_APP_API_KEY;
+      let searchQuery="technology"
       let apiUrl;
       // Fetch general top headlines
-      apiUrl = `https://newsapi.org/v2/everything?q=technology&apiKey=${newsAPIKey}&language=en&searchIn=title`;
+      apiUrl = `https://news-nextjs-apis.vercel.app/api/search-news?q=${searchQuery}&apiKey=${newsAPIKey}`;
 
       try {
         setLoading(true);
